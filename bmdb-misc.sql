@@ -128,3 +128,75 @@ VALUES
 SELECT*
   INTO MovieCopy
   FROM Movie
+
+INSERT INTO Movie (title, year, Rating, director)
+VALUES 
+('Captain America: The First Avenger', 2011, 'PG-13', 'Joe Johnston'),
+('Ant-Man', 2015, 'PG-13', 'Peyton Reed'),
+('Iron Man', 2008, 'PG-13', 'Jon Favreau');
+
+INSERT INTO Actor (firstName, lastName, gender, birthDate)
+VALUES 
+('Chris', 'Evans', 'M', '1981-06-13'),   -- Captain America
+('Hayley', 'Atwell', 'F', '1982-04-05'),  -- Peggy Carter
+('Tom', 'Hiddleston', 'M', '1981-02-09'); -- Loki
+
+INSERT INTO Actor (firstName, lastName, gender, birthDate)
+VALUES 
+('Chris', 'Evans', 'M', '1981-06-13'),   -- Captain America
+('Hayley', 'Atwell', 'F', '1982-04-05'),  -- Peggy Carter
+('Tom', 'Hiddleston', 'M', '1981-02-09'), -- Loki
+
+INSERT INTO Actor (firstName, lastName, gender, birthDate)
+VALUES
+('Robert', 'Downey Jr.', 'M', '1965-04-04'), -- Tony Stark / Iron Man
+('Gwyneth', 'Paltrow', 'F', '1972-09-27'),  -- Virginia "Pepper" Potts
+('Jeff', 'Bridges', 'M', '1949-12-04');      -- Obadiah Stane
+
+INSERT INTO Actor (firstName, lastName, gender, birthDate)
+VALUES 
+('Paul', 'Rudd', 'M', '1969-04-06'),      -- Scott Lang / Ant-Man
+('Evangeline', 'Lilly', 'F', '1979-08-03'),-- Hope Van Dyne / Wasp
+('Michael', 'Douglas', 'M', '1944-09-25'); -- Hank Pym
+
+INSERT INTO Actor (firstName, lastName, gender, birthDate)
+VALUES 
+('Hugo', 'Weaving', 'M', '1960-04-04')
+
+SELECT *
+ FROM Movie
+
+SELECT *
+  FROM Actor
+
+--credits 
+--Captain America:TFA(7)
+  --Chris Evans(15) steve rogers/captain America
+  --Haley Atwell(16) Peggy CArter
+  --Hugo Weaving(25) Johann Schmidt/ Red Skull
+--Ant-Man(8)
+  --Paul Rudd(22) Scott Lang/ Ant-Man
+  --Evangeline Lilly(23) Hope Van Dyne
+  --Michael Douglas(24) Hank Pym
+--Iron Man(9)
+  --Robert Downey Jr(19) Tony Stark/ Iron Man
+  --Gwyneth Paltro(20) Virginia "Pepper' Potts
+  --Jeff Bridges(21) Obadiah Stane/ Iron Monger
+
+INSERT INTO Credit (MovieID, ActorID, Role)
+VALUES
+	(7, 15, 'Steve Rogers/ Captain America'),
+	(7, 16, 'Peggy Carter'),
+	(7, 25, 'Johann Schmidt/ Red Skull'),
+	(8, 22, 'Scott Lang/ Ant-Man'),
+	(8, 23, 'Hope Van Dyne'),
+	(8, 24, 'Hank Pym'),
+	(9, 19, 'Tony Stark/ Iron Man'),
+	(9, 20, 'Virginia "Pepper" Potts'),
+	(9, 21, 'Obadiah Stane/ Iron Monger');
+
+	--TEST to see if evernthing in correct
+SELECT Title, CONCAT(FirstName, ', ', LastName) AS Actor, Role
+  FROM Credit C
+  JOIN Movie M ON M.id = C.MovieID
+  JOIN Actor A ON A.ID = C.ActorID;
